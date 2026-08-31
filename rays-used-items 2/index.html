@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ray's Used Items for Sale</title>
+<meta name="description" content="Ray's used items for sale. New and lightly used gear, pickup in Harlem, NYC.">
+<style>
+  :root{
+    --paper:#eceef1;
+    --card:#f7f8f9;
+    --ink:#151d26;
+    --ink-soft:#5a6672;
+    --rule:#c8ced6;
+    --mark:#0f6e63;
+    --gone:#8d3a2d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:17px;
+    line-height:1.55;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:0 22px}
+
+  header{padding:64px 0 34px;border-bottom:2px solid var(--ink)}
+  h1{
+    margin:0;
+    font-size:clamp(2.5rem,7vw,4.4rem);
+    line-height:.94;
+    font-weight:600;
+    letter-spacing:-.02em;
+  }
+  .standfirst{margin:18px 0 0;max-width:52ch;color:var(--ink-soft);font-size:1.05rem}
+  .terms{
+    margin:26px 0 0;padding:0;list-style:none;
+    display:flex;flex-wrap:wrap;gap:8px 26px;
+    font-size:.9rem;color:var(--ink-soft);
+  }
+
+  .item{
+    display:grid;
+    grid-template-columns:250px 1fr auto;
+    gap:26px;
+    align-items:start;
+    padding:32px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .gallery{display:flex;flex-direction:column;gap:8px}
+  .shot{
+    background:var(--card);
+    border:1px solid var(--rule);
+    aspect-ratio:4/5;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot span{color:var(--ink-soft);font-size:.85rem;padding:10px;text-align:center}
+  .thumbs{display:flex;gap:8px}
+  .thumbs button{
+    padding:0;border:1px solid var(--rule);background:none;cursor:pointer;
+    width:52px;height:52px;overflow:hidden;
+  }
+  .thumbs button[aria-current="true"]{border-color:var(--ink);border-width:2px}
+  .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .item h2{margin:0;font-size:1.5rem;font-weight:600;line-height:1.2}
+  .meta{margin:6px 0 0;color:var(--ink-soft);font-size:.92rem}
+  .blurb{margin:12px 0 0;max-width:58ch}
+  .specs{margin:14px 0 0;padding:0 0 0 18px;color:var(--ink-soft);font-size:.95rem}
+  .specs li{margin:3px 0}
+
+  .price{font-size:1.6rem;font-weight:600;white-space:nowrap;text-align:right}
+  .price small{display:block;font-size:.78rem;font-weight:400;color:var(--ink-soft)}
+  .sold .shot,.sold .thumbs{filter:grayscale(1);opacity:.6}
+  .sold .price{color:var(--gone);text-decoration:line-through}
+  .sold .price small{color:var(--gone);text-decoration:none}
+
+  footer{padding:46px 0 70px;margin-top:12px;border-top:2px solid var(--ink)}
+  footer h2{margin:0 0 10px;font-size:1.3rem;font-weight:600}
+  footer p{margin:0 0 10px;max-width:58ch;color:var(--ink-soft)}
+  a{color:var(--mark);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+
+  @media (max-width:720px){
+    .item{grid-template-columns:1fr;gap:14px}
+    .gallery{max-width:320px}
+    .price{text-align:left}
+    header{padding-top:44px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Ray's used items<br>for sale</h1>
+    <p class="standfirst">New and lightly used gear, priced below retail. Everything can be seen in person before you buy.</p>
+    <ul class="terms">
+      <li>Pickup in Harlem, Manhattan</li>
+      <li>Cash, Zelle, or Venmo</li>
+      <li>Smoke-free, pet-free home</li>
+    </ul>
+  </header>
+
+  <main id="listings"></main>
+
+  <footer>
+    <h2>Interested in something?</h2>
+    <p>Email <a href="mailto:computersales25@gmail.com">computersales25@gmail.com</a> with the item name and I'll get back to you the same day.</p>
+    <p>Items are first come, first served — a price isn't held until we've agreed on a pickup time.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   EDIT HERE. One block per item. Copy a block to add another.
+
+   name    what it is
+   price   what you're asking, as text
+   note    condition or age — the one line a buyer needs
+   blurb   the fuller description
+   specs   short bullet points, or leave as []
+   photos  filenames inside the images folder; first one shows large
+   sold    true once it's gone (stays listed, marked sold)
+------------------------------------------------------------------ */
+const ITEMS = [
+  {
+    name: "Samsonite hardside carry-on spinner",
+    price: "$95.82",
+    note: "New, never used — original receipt included",
+    blurb: "Black ribbed hardside carry-on, bought at the Samsonite outlet in Orlando and never taken on a trip. The protective plastic is still on the handles and the wheels are unmarked. Receipt comes with it.",
+    specs: [
+      "Four-wheel spinner, rolls upright in any direction",
+      "Built-in TSA-approved combination lock (TSA007)",
+      "USB charging port on the exterior shell",
+      "Split interior with mesh zip pockets and a garment divider",
+      "Carry-on size for weekend trips and overhead bins"
+    ],
+    photos: ["images/samsonite-front.jpg","images/samsonite-back.jpg","images/samsonite-lock.jpg"],
+    sold: false
+  }
+];
+
+const listings = document.getElementById("listings");
+
+listings.innerHTML = ITEMS.map((item, i) => {
+  const photos = item.photos || [];
+  const main = photos.length
+    ? `<img src="${photos[0]}" alt="${item.name}" id="main-${i}">`
+    : `<span>Photo coming</span>`;
+  const thumbs = photos.length > 1
+    ? `<div class="thumbs">` + photos.map((p, n) =>
+        `<button type="button" data-item="${i}" data-src="${p}" aria-current="${n === 0}" aria-label="View photo ${n + 1}"><img src="${p}" alt=""></button>`
+      ).join("") + `</div>`
+    : "";
+  const specs = (item.specs && item.specs.length)
+    ? `<ul class="specs">` + item.specs.map(s => `<li>${s}</li>`).join("") + `</ul>`
+    : "";
+  return `
+    <article class="item${item.sold ? " sold" : ""}">
+      <div class="gallery">
+        <div class="shot">${main}</div>
+        ${thumbs}
+      </div>
+      <div>
+        <h2>${item.name}</h2>
+        <p class="meta">${item.note}</p>
+        <p class="blurb">${item.blurb}</p>
+        ${specs}
+      </div>
+      <div class="price">${item.price}${item.sold ? "<small>Sold</small>" : ""}</div>
+    </article>`;
+}).join("");
+
+listings.addEventListener("click", e => {
+  const btn = e.target.closest(".thumbs button");
+  if (!btn) return;
+  const i = btn.dataset.item;
+  document.getElementById("main-" + i).src = btn.dataset.src;
+  btn.parentElement.querySelectorAll("button").forEach(b =>
+    b.setAttribute("aria-current", b === btn)
+  );
+});
+</script>
+</body>
+</html>
